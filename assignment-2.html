@@ -1,0 +1,327 @@
+ <!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Bank Loan</title>
+</head>
+
+<body onload="getData()">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg text-center navbar-light bg-light">
+
+            <a class="navbar-brand text-center" href="#">MF Store</a>
+
+        </nav>
+
+        <div class="row search-bar">
+            
+                <input type="text" class="form-control " placeholder="search" aria-label="Username"
+                    aria-describedby="addon-wrapping">
+          
+        </div>
+     <div >
+         <table id="exxx">
+            <tr>
+                <th>Scheme Code</th>
+                <th>Scheme Name</th>
+              </tr>
+              <tbody >
+
+              </tbody>
+         </table>
+        <table class="table display" width="100%" id="mf-table">
+            <tr>
+                <th>Scheme Code</th>
+                <th>Scheme Name</th>
+              </tr>
+              <tbody id="tbody">
+
+              </tbody>
+          </table>
+        </div>
+       
+    </div>
+</body>
+<script >
+       var tab = '';
+       
+   async function getData(){
+    const records = await fetch('https://api.mfapi.in/mf').then((res) => res.json())
+      .then((data) => {
+   
+    console.log(data)
+ 
+    data.forEach(function(user)  {
+        tab +=`<tr>
+            <td>${user.schemeCode}</td>
+            <td>${user.schemeName}</td>`;
+    })
+});
+    document.getElementById('tbody').innerHTML =tab;
+    $('#mf-table').DataTable({
+        "data":data,
+        "column":[
+            {"data":"schemeCode"},
+            {"data":"schemeName"}
+        ],
+        "pageLength": 10,
+        "lengthMenu": [ 10, 25, 50, 75, 100 ],
+        "paging": true,
+        "sorting": true,
+    })
+  }
+</script>
+
+</html>  -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mutual Fund Portfolio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fbfcfd;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    header {
+      background-color: #346ccb;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    main {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px;
+    }
+
+    .mutual-fund-list,
+    .portfolio {
+      width: 45%;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .mutual-fund-list h2,
+    .portfolio h2 {
+      margin-top: 0;
+    }
+
+    .search-bar {
+      margin-bottom: 10px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    button {
+      background-color: #346ccb;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #205590;
+    }
+
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      display: none;
+    }
+
+    .popup-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .close-popup {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      color: #346ccb;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Mutual Fund Portfolio</h1>
+  </header>
+
+  <main>
+    <section class="mutual-fund-list">
+        <h2>Available Mutual Funds</h2>
+        <div class="search-bar">
+          <input type="text" placeholder="Search mutual funds..." id="searchInput" oninput="handleSearch()">
+        </div>
+        <ul id="mutualFundList"></ul>
+        <div class="pagination">
+          <button onclick="prevPage()">Previous</button>
+          <span id="currentPage">1</span>
+          <button onclick="nextPage()">Next</button>
+        </div>
+      </section>
+
+      
+    </main>
+  
+    <div class="popup" id="popup">
+      <div class="popup-content">
+        <button class="close-popup" onclick="closePopup()">X</button>
+        <h2>Mutual Fund Details</h2>
+        <div id="popupDetails"></div>
+      </div>
+    </div>
+
+  <script>
+   
+   const API_BASE_URL = 'https://api.mfapi.in/mf';
+let mutualFunds = [];
+let currentDataset = [];  // Variable to store the current dataset
+let currentPage = 1;
+const fundsPerPage = 10;
+
+function fetchMutualFunds() {
+  fetch(API_BASE_URL)
+    .then(response => response.json())
+    .then(data => {
+      mutualFunds = data;
+      currentDataset = mutualFunds;  // Initially, the current dataset is the full dataset
+      displayMutualFunds();
+    })
+    .catch(error => console.error('Error fetching mutual funds:', error));
+}
+
+function displayMutualFunds() {
+  const start = (currentPage - 1) * fundsPerPage;
+  const end = start + fundsPerPage;
+  const paginatedFunds = currentDataset.slice(start, start + fundsPerPage);
+
+  const mutualFundList = document.getElementById('mutualFundList');
+  mutualFundList.innerHTML = '';
+
+  paginatedFunds.forEach(fund => {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `
+      <span><a href="portfolio.html?schemeCode=${fund.schemeCode}">${fund.schemeName}</a></span>
+      
+    `;
+    mutualFundList.appendChild(listItem);
+  });
+
+  document.getElementById('currentPage').innerText = currentPage;
+}
+
+function handleSearch() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  currentDataset = mutualFunds.filter(fund => fund.schemeName.toLowerCase().includes(query));
+  currentPage = 1;  // Reset to the first page after search
+  displayMutualFunds();
+}
+
+
+
+    
+function nextPage() {
+  currentPage++;
+  displayMutualFunds();
+}
+
+function prevPage() {
+  if (currentPage > 1) {
+    currentPage--;
+    displayMutualFunds();
+  }
+}
+function displayPortfolio() {
+      const portfolioList = document.getElementById('portfolioList');
+      portfolioList.innerHTML = '';
+
+      portfolio.forEach(fund => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+          <span>${fund.schemeCode} - ${fund.units} units</span>
+          <button onclick="showDetails('${fund.schemeCode}')">Details</button>
+        `;
+        portfolioList.appendChild(listItem);
+      });
+    }
+
+    function showDetails(schemeCode) {
+      const selectedFund = mutualFunds.find(fund => fund.schemeCode === schemeCode);
+      const popupDetails = document.getElementById('popupDetails');
+      popupDetails.innerHTML = `
+        <p><strong>Scheme Name:</strong> ${selectedFund.schemeName}</p>
+        <p><strong>Fund House:</strong> ${selectedFund.fundHouse}</p>
+        <p><strong>Scheme Category:</strong> ${selectedFund.schemeCategory}</p>
+        <p><strong>Scheme Type:</strong> ${selectedFund.schemeType}</p>
+        <p><strong>Latest NAV:</strong> ${selectedFund.lastNAV}</p>
+        <p><strong>Latest NAV Date:</strong> ${selectedFund.lastNAVDate}</p>
+      `;
+
+      const popup = document.getElementById('popup');
+      popup.style.display = 'flex';
+    }
+
+    function closePopup() {
+      const popup = document.getElementById('popup');
+      popup.style.display = 'none';
+    }
+
+    fetchMutualFunds();
+
+  </script>
+</body>
+
+</html>

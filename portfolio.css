@@ -1,0 +1,39 @@
+/* .table {
+    margin: 15px 0px;
+} */
+.form-control{
+    border: 2px solid rgb(216 212 212 / 85%); 
+}
+.text-center{
+    margin: auto;
+} 
+.row {
+    display: flex;
+    margin: 22px;
+    
+    
+} 
+button.btn.btn-outline-primary {
+    border: 2px solid black;
+    color: black;
+}
+
+.row>* {
+
+    width: 15%;
+}
+.span {
+    text-align: center;
+    /* margin: 12px 0px; */
+}
+
+ .main-form {
+    margin-top: 20px !important;
+}
+.category {
+    margin: 0px 20px;
+}
+.intput-btn {
+    display: flex;
+    justify-content: space-evenly;
+}

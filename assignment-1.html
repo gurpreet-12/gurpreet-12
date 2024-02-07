@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+  <title>Loan Management System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fbfcfd;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #346ccb;
+      color: white;
+      text-align: center;
+      padding: 1em 0;
+    }
+
+    section {
+      margin: 20px;
+    }
+
+    button {
+      background-color: #346ccb;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+  <header>
+    
+     <h1>Loan Management System</h1>
+  </header>
+
+  <section>
+    <h2>LEND</h2>
+    <label for="customerId">Customer ID:</label>
+    <input type="text" id="customerId" placeholder="Enter customer ID">
+    <br>
+    <label for="loanAmount">Loan Amount:</label>
+    <input type="number" id="loanAmount" placeholder="Enter loan amount">
+    <br>
+    <label for="loanPeriod">Loan Period (in years):</label>
+    <input type="number" id="loanPeriod" placeholder="Enter loan period">
+    <br>
+    <label for="interestRate">Rate of Interest:</label>
+    <input type="number" id="interestRate" placeholder="Enter interest rate">
+    <br>
+    <button onclick="lend()">LEND</button>
+  </section>
+
+  <section>
+    <h2>PAYMENT</h2>
+    <label for="loanId">Loan ID:</label>
+    <input type="text" id="loanId" placeholder="Enter loan ID">
+    <br>
+    <label for="emiPayment">EMI Payment:</label>
+    <input type="number" id="emiPayment" placeholder="Enter EMI payment">
+    <br>
+    <label for="lumpSumPayment">Lump Sum Payment:</label>
+    <input type="number" id="lumpSumPayment" placeholder="Enter lump sum payment">
+    <br>
+    <button onclick="makePayment()">MAKE PAYMENT</button>
+  </section>
+
+  <section>
+    <h2>LEDGER</h2>
+    <label for="ledgerLoanId">Loan ID:</label>
+    <input type="text" id="ledgerLoanId" placeholder="Enter loan ID">
+    <br>
+    <button onclick="getLedger()">GET LEDGER</button>
+    <table id="ledgerTable">
+      <!-- Ledger table will be displayed here -->
+    </table>
+  </section>
+
+  <section>
+    <h2>ACCOUNT OVERVIEW</h2>
+    <label for="overviewCustomerId">Customer ID:</label>
+    <input type="text" id="overviewCustomerId" placeholder="Enter customer ID">
+    <br>
+    <button onclick="getAccountOverview()">GET ACCOUNT OVERVIEW</button>
+    <table id="overviewTable">
+      <!-- Account overview table will be displayed here -->
+    </table>
+  </section>
+  </div>
+  <script>
+    // JavaScript functions for handling the actions
+    function lend() {
+      // Implementation for LEND function
+    }
+
+    function makePayment() {
+      // Implementation for PAYMENT function
+    }
+
+    function getLedger() {
+      // Implementation for LEDGER function
+    }
+
+    function getAccountOverview() {
+      // Implementation for ACCOUNT OVERVIEW function
+    }
+  </script>
+
+</body>
+
+</html>
